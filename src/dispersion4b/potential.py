@@ -73,15 +73,15 @@ class FourBodyDispersionPotential:
         #       of a unit vector matters.
         #
         #     : physically, this would be like saying "swapping the positions of any
-        #       two of the four particles should not change the energy", which makes
-        #       sense.
+        #       two of the four identical particles should not change the energy",
+        #       which makes sense.
         #
         #     : I should unit test it anyways
         total_energy += 2.0 * _quadruplet_contribution(vec30, vec32, vec21, vec10)
         total_energy += 2.0 * _quadruplet_contribution(vec20, vec32, vec31, vec10)
         total_energy += 2.0 * _quadruplet_contribution(vec20, vec21, vec31, vec30)
 
-        return self._c12_coeff * total_energy
+        return -self._c12_coeff * total_energy
 
     def _check_c12_coeff_positive(self, c12_coeff: float) -> None:
         if c12_coeff <= 0.0:
