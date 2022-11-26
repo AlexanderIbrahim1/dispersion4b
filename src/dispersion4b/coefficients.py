@@ -47,4 +47,4 @@ def c12_parahydrogen_approx() -> float:
     c6_coeff = c6_parahydrogen()
     c9_coeff = c9_parahydrogen()
 
-    return (5.0 * c9_coeff**2) / (3.0 * c6_coeff)
+    return (5.0 * c9_coeff**2) / (12.0 * c6_coeff)
