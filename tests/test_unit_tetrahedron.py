@@ -7,12 +7,6 @@ from cartesian.operations import dot_product
 
 from dispersion4b.potential import FourBodyDispersionPotential
 
-# TODO:
-# - try out other unit geometries, ones that are easy to calculate by hand
-# - 4 particles in a straight line?
-# - a square of unit side length?
-
-
 def get_tetrahedron_points(sidelen: float) -> list[Cartesian3D]:
     p0 = sidelen * Cartesian3D(-0.5, 0.0, 0.0)
     p1 = sidelen * Cartesian3D(0.5, 0.0, 0.0)
@@ -118,12 +112,4 @@ def test_unit_tetrahedron_energy(sidelen, energy_func_by_hand):
 
     assert expect_energy == pytest.approx(actual_energy)
 
-
-def test_raises_negative_c12_coeff():
-    with pytest.raises(ValueError) as exc_info:
-        FourBodyDispersionPotential(-1.0)
-
-    assert "The C12 coefficient for the interaction must be positive.\n" in str(
-        exc_info.value
-    )
 
