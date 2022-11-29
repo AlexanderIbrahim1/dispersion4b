@@ -75,3 +75,22 @@ def c12_parahydrogen_avdz_approx() -> float:
     mk_to_avdz_ratio = 0.8822
 
     return mk_to_avdz_ratio * c12_parahydrogen_midzuno_kihara()
+
+
+def c12_parahydrogen_avtz_approx() -> float:
+    """
+    The C_12 coefficient for the quadruple-dipole dispersion interaction between
+    four parahydrogen molecules.
+
+    Units: [cm^{-1}] [Angstrom]^{-12}
+
+    We follow a similar approach to what was done in 'c12_parahydrogen_avdz_approx()'.
+    However, we use the CCSD(T) energies calculated using the AVTZ basis instead of
+    the AVDZ basis, and we base our estimate on the value of the interaction energy
+    at the tetrahedron side length of 4.15 Angstroms (the turning point in the curve).
+
+    The estimate is given as a ratio of the Midzuno-Kihara estimate.
+    """
+    mk_to_avtz_ratio = 0.8252
+
+    return mk_to_avtz_ratio * c12_parahydrogen_midzuno_kihara()
