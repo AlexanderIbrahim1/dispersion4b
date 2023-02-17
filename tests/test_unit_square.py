@@ -7,6 +7,7 @@ from cartesian.operations import dot_product
 
 from dispersion4b.potential import FourBodyDispersionPotential
 
+
 def get_square_points(sidelen: float) -> list[Cartesian3D]:
     p0 = sidelen * Cartesian3D(0.0, 0.0, 0.0)
     p1 = sidelen * Cartesian3D(1.0, 0.0, 0.0)
@@ -26,9 +27,7 @@ def unit_square_energy_by_hand() -> float:
     # distances:
     #    R_01 = R_12 = R_23 = R_30 = 1
     #    R_02 = R_13 = sqrt(2)
-    total_pair_contrib = \
-        4 * (1.0/1.0)**12 + \
-        2 * (1.0/math.sqrt(2.0))**12
+    total_pair_contrib = 4 * (1.0 / 1.0) ** 12 + 2 * (1.0 / math.sqrt(2.0)) ** 12
 
     # there are 4 triplet terms
     #
@@ -38,13 +37,11 @@ def unit_square_energy_by_hand() -> float:
     # for (0-1-3) and (0-2-3)
     # - the angle between the unit vectors is cos(135deg)
     # - one pair distance is 1, the other is sqrt(2)
-    cos135 = math.cos(math.pi*(3.0/4.0))
-    contrib_012 = (1.0 + (0.0)**2) / (1.0**12)
-    contrib_013 = (1.0 + (cos135)**2) / ((1.0**6) * (math.sqrt(2.0)**6))
-    
-    total_triplet_contrib = \
-        2 * contrib_012 + \
-        2 * contrib_013
+    cos135 = math.cos(math.pi * (3.0 / 4.0))
+    contrib_012 = (1.0 + (0.0) ** 2) / (1.0**12)
+    contrib_013 = (1.0 + (cos135) ** 2) / ((1.0**6) * (math.sqrt(2.0) ** 6))
+
+    total_triplet_contrib = 2 * contrib_012 + 2 * contrib_013
 
     # there are 3 quadruplet terms
     #
@@ -57,7 +54,7 @@ def unit_square_energy_by_hand() -> float:
     # triplet terms: 0
     # quad term: 0
     term_0123_denom = 1.0
-    term_0123_numer = -1 + (1)*(2.0) + (-3)*(0.0) + (9)*(0.0)
+    term_0123_numer = -1 + (1) * (2.0) + (-3) * (0.0) + (9) * (0.0)
     term_0123 = term_0123_numer / term_0123_denom
 
     # f(0-1-3-2)
@@ -77,8 +74,8 @@ def unit_square_energy_by_hand() -> float:
     term_0132_numer = -2 * cos135**2 + 9 * cos135**4
     term_0132 = term_0132_numer / term_0132_denom
 
-    total_quadruplet_contrib = 2.0 * (term_0123 + 2*term_0132)
-    
+    total_quadruplet_contrib = 2.0 * (term_0123 + 2 * term_0132)
+
     return -(total_pair_contrib + total_triplet_contrib + total_quadruplet_contrib)
 
 

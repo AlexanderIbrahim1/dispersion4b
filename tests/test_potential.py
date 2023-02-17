@@ -34,15 +34,14 @@ def test_inverse_r12_trend():
     """
     c12_coeff = 1.0
     pot = FourBodyDispersionPotential(c12_coeff)
-    
+
     sidelengths = np.linspace(1.0, 5.0, 128)
-    energies = np.array([
-        pot(*get_tetrahedron_points(sidelen))
-        for sidelen in sidelengths
-    ])
+    energies = np.array(
+        [pot(*get_tetrahedron_points(sidelen)) for sidelen in sidelengths]
+    )
     energies_times_r12 = energies * (sidelengths**12)
-    
+
     mean_energy_times_r12 = np.mean(energies_times_r12)
-    
+
     for eng_times_r12 in energies_times_r12:
         assert mean_energy_times_r12 == pytest.approx(eng_times_r12)

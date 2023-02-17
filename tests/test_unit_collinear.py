@@ -33,10 +33,9 @@ def unit_collinear_energy_by_hand() -> float:
     #    R_10 = R_20 = R_30 = 1
     #    R_20 = R_31 =        2
     #    R_30 =               3
-    total_pair_contrib = \
-        3 * (1.0/1.0)**12 + \
-        2 * (1.0/2.0)**12 + \
-        1 * (1.0/3.0)**12
+    total_pair_contrib = (
+        3 * (1.0 / 1.0) ** 12 + 2 * (1.0 / 2.0) ** 12 + 1 * (1.0 / 3.0) ** 12
+    )
 
     # there are 4 triplet terms
     #
@@ -46,9 +45,7 @@ def unit_collinear_energy_by_hand() -> float:
     #
     # for (0-1-2) and (1-2-3) -> denominator is 1
     # for (0-1-3) and (0-2-3) -> denominator is 2^6
-    total_triplet_contrib = \
-        2 * (2.0 / (1.0**6)) + \
-        2 * (2.0 / (2.0**6))
+    total_triplet_contrib = 2 * (2.0 / (1.0**6)) + 2 * (2.0 / (2.0**6))
 
     # there are 3 quadruplet terms
     #
@@ -65,20 +62,15 @@ def unit_collinear_energy_by_hand() -> float:
     # - it has a coefficient of +9
     # - again, each unit vector appears twice in each term; the result is always 1
     #
-    quadruplet_numerator = \
-        -1 + \
-        6 * 1.0 * 1.0 + \
-        4 * (-3.0) * 1.0 + \
-        1 * (9.0) * 1.0
-    
+    quadruplet_numerator = -1 + 6 * 1.0 * 1.0 + 4 * (-3.0) * 1.0 + 1 * (9.0) * 1.0
+
     # the denominators:
     # f(0-1-2-3) -> 27
     # f(0-1-3-2) -> 64
     # f(0-2-1-3) -> 1728
-    
-    total_quadruplet_contrib = \
-        2.0 * quadruplet_numerator * (
-        (1.0/27.0) + (1.0/64.0) + (1.0/1728.0)
+
+    total_quadruplet_contrib = (
+        2.0 * quadruplet_numerator * ((1.0 / 27.0) + (1.0 / 64.0) + (1.0 / 1728.0))
     )
 
     return -(total_pair_contrib + total_triplet_contrib + total_quadruplet_contrib)
