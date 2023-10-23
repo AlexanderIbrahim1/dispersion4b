@@ -30,11 +30,11 @@ def unit_tetrahedron_energy_by_hand() -> float:
     indiv_pair_contrib = 1.0
     total_pair_contrib = 6 * indiv_pair_contrib
 
-    # there are 4 triplet terms
+    # there are 12 triplet terms
     # the denominator of each is 1.0
     # the numerator of each is `1.0 + cos(120deg)^2`
     indiv_triplet_contrib = 1.0 + cos120**2
-    total_triplet_contrib = 4 * indiv_triplet_contrib
+    total_triplet_contrib = 12 * indiv_triplet_contrib
 
     # there are 3 quadruplet terms
     # each of them is calculated using dot products of unit vectors
@@ -69,11 +69,11 @@ def sidelen2_tetrahedron_energy_by_hand() -> float:
     indiv_pair_contrib = (1.0 / 2.0) ** 12
     total_pair_contrib = 6 * indiv_pair_contrib
 
-    # there are 4 triplet terms
+    # there are 12 triplet terms
     # the denominator of each is (2.0)**12
     # the numerator of each is `1.0 + cos(120deg)^2`
     indiv_triplet_contrib = (1.0 + cos120**2) / (2.0**12)
-    total_triplet_contrib = 4 * indiv_triplet_contrib
+    total_triplet_contrib = 12 * indiv_triplet_contrib
 
     # there are 3 quadruplet terms
     # each of them is calculated using dot products of unit vectors
