@@ -55,18 +55,10 @@ class FourBodyDispersionPotential:
             total_energy += _pair_contribution(vec.magnitude)
 
         # the triplet contribution
-        total_energy += _triplet_contribution(vec10, vec20)
-        total_energy += _triplet_contribution(vec10, vec30)
-        total_energy += _triplet_contribution(vec20, vec30)
-        total_energy += _triplet_contribution(vec10, vec21)
-        total_energy += _triplet_contribution(vec10, vec31)
-        total_energy += _triplet_contribution(vec21, vec31)
-        total_energy += _triplet_contribution(vec20, vec21)
-        total_energy += _triplet_contribution(vec20, vec32)
-        total_energy += _triplet_contribution(vec21, vec32)
-        total_energy += _triplet_contribution(vec30, vec31)
-        total_energy += _triplet_contribution(vec30, vec32)
-        total_energy += _triplet_contribution(vec31, vec32)
+        total_energy += _triplet_contribution(vec21, vec10)
+        total_energy += _triplet_contribution(vec31, vec10)
+        total_energy += _triplet_contribution(vec32, vec20)
+        total_energy += _triplet_contribution(vec32, vec21)
 
         # calculate all the dot product combinations
         # NOTE: the equation in the paper has some of the indices swapped compared to
