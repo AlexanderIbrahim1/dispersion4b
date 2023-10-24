@@ -169,3 +169,58 @@ def b12_parahydrogen_avtz_approx() -> float:
     mk_to_avtz_ratio = 0.1202
 
     return mk_to_avtz_ratio * b12_parahydrogen_midzuno_kihara()
+
+
+def q12_parahydrogen_midzuno_kihara() -> float:
+    """
+    The full Bade dispersion interaction is composed of a pair component, a triplet
+    component, and a quadruplet component. We are only interested in the quadruplet
+    component.
+
+    Recall that we are using the disperion interaction as an extension of the ab
+    initio interaction energy. When we calculate the four-body ab initio interaction
+    energy, we already subtract out the contributions from the pair and triplet
+    interactions. Thus, we can do the same with the Bade potential.
+
+    When we remove the pair and triplet components, we end up with a weaker interaction
+    energy. One way to describe just how much weaker it is from the original Bade
+    potential is by providing a new interaction coefficient.
+
+    We choose the tetrahedron geometry. Then we calculate the quadruplet component of
+    the Bade interaction, and compare it to the total Bade interaction. For this
+    specific geometry, the ratio of the quadruplet component to the total interaction
+    is 9 / 65.
+
+    NOTE: this value is just used as a measure of the remaining interaction strength.
+    When creating the interaction potential that only uses the quadruplet component
+    of the Bade potential, use the proper B12 coefficient:
+    ```
+    b12_coeff = b12_parahydrogen_midzuno_kihara()
+    pot = QuadrupletDispersionPotential(b12_coeff)
+    ```
+    """
+    return (9.0 / 65.0) * b12_parahydrogen_midzuno_kihara()
+
+
+def q12_parahydrogen_avdz_approx() -> float:
+    """
+    This is an estimate of the Q_12 coefficient for the quadruplet component of the
+    Bade potential, calculated from the AVDZ electronic structure energies.
+
+    The estimate is given as a ratio of the Midzuno-Kihara Q_12 coefficient.
+    """
+    mk_to_avdz_ratio = 0.9380
+
+    return mk_to_avdz_ratio * q12_parahydrogen_midzuno_kihara()
+
+
+def q12_parahydrogen_avtz_approx() -> float:
+    """
+    This is an estimate of the Q_12 coefficient for the quadruplet component of the
+    Bade potential, calculated from the AVTZ electronic structure energies.
+
+    The estimate is given as a ratio of the Midzuno-Kihara Q_12 coefficient.
+    """
+    mk_to_avtz_ratio = 0.8736
+
+    return mk_to_avtz_ratio * q12_parahydrogen_midzuno_kihara()
