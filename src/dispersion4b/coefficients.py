@@ -43,6 +43,10 @@ def c12_parahydrogen_midzuno_kihara() -> float:
     This is an approximation of the C_12 coefficient using a the Midzuno-Kihara
     approximation. We use the C_6 and C_9 coefficients to estimate the C_12
     coefficient.
+
+    NOTE: this result is actually incorrect; I used the wrong one of the two equations
+    on the page, and thus this result is too small by a factor of 4. Instead, use the
+    corrected result given by `b12_parahydrogen_midzuno_kihara()`
     """
     c6_coeff = c6_parahydrogen()
     c9_coeff = c9_parahydrogen()
@@ -94,3 +98,20 @@ def c12_parahydrogen_avtz_approx() -> float:
     mk_to_avtz_ratio = 0.8252
 
     return mk_to_avtz_ratio * c12_parahydrogen_midzuno_kihara()
+
+
+def b12_parahydrogen_midzuno_kihara() -> float:
+    """
+    The B_12 coefficient for the quadruple-dipole dispersion interaction between
+    four parahydrogen molecules.
+
+    Units: [cm^{-1}] [Angstrom]^{-12}
+
+    This is an approximation of the C_12 coefficient using a the Midzuno-Kihara
+    approximation. We use the C_6 and C_9 coefficients to estimate the C_12
+    coefficient.
+    """
+    c6_coeff = c6_parahydrogen()
+    c9_coeff = c9_parahydrogen()
+
+    return (5.0 * c9_coeff**2) / (3.0 * c6_coeff)
