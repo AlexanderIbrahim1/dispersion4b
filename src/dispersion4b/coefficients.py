@@ -75,6 +75,10 @@ def c12_parahydrogen_avdz_approx() -> float:
     sidelength to the 12th power.
 
     The estimate is given as a ratio of the Midzuno-Kihara estimate.
+
+    NOTE: this result is actually incorrect; I used the wrong one of the two equations
+    on the page, and thus this result is too small by a factor of 4. Instead, use the
+    corrected result given by `b12_parahydrogen_avdz_approx()`
     """
     mk_to_avdz_ratio = 0.8822
 
@@ -94,6 +98,10 @@ def c12_parahydrogen_avtz_approx() -> float:
     at the tetrahedron side length of 4.15 Angstroms (the turning point in the curve).
 
     The estimate is given as a ratio of the Midzuno-Kihara estimate.
+
+    NOTE: this result is actually incorrect; I used the wrong one of the two equations
+    on the page, and thus this result is too small by a factor of 4. Instead, use the
+    corrected result given by `b12_parahydrogen_avtz_approx()`
     """
     mk_to_avtz_ratio = 0.8252
 
@@ -107,11 +115,57 @@ def b12_parahydrogen_midzuno_kihara() -> float:
 
     Units: [cm^{-1}] [Angstrom]^{-12}
 
-    This is an approximation of the C_12 coefficient using a the Midzuno-Kihara
-    approximation. We use the C_6 and C_9 coefficients to estimate the C_12
+    This is an approximation of the B_12 coefficient using a the Midzuno-Kihara
+    approximation. We use the C_6 and C_9 coefficients to estimate the B_12
     coefficient.
     """
     c6_coeff = c6_parahydrogen()
     c9_coeff = c9_parahydrogen()
 
     return (5.0 * c9_coeff**2) / (3.0 * c6_coeff)
+
+
+def b12_parahydrogen_avdz_approx() -> float:
+    """
+    The B_12 coefficient for the quadruple-dipole dispersion interaction between
+    four parahydrogen molecules.
+
+    Units: [cm^{-1}] [Angstrom]^{-12}
+
+    This is an approximation of the coefficient based on the preliminary electronic
+    structure calculations done for the four-body parahydrogen interaction.
+
+    We calculate the four-body interaction energy for a tetrahedron with a parahydrogen
+    molecule at each corner. The energies are calculated at the CCSD(T) level, using
+    an AVDZ basis set. The energies are averaged using the L=3 lebedev quadrature,
+    aligned along the xyz axes.
+
+    The estimate of B_12 is based on the value of the interaction energy when the
+    tetrahedron's side length is 4.25 Angstroms. This value was chosen because it is
+    the turning point in the curve when the interaction energy is multiplied by the
+    sidelength to the 12th power.
+
+    The estimate is given as a ratio of the Midzuno-Kihara estimate.
+    """
+    mk_to_avdz_ratio = 0.1281
+
+    return mk_to_avdz_ratio * b12_parahydrogen_midzuno_kihara()
+
+
+def b12_parahydrogen_avtz_approx() -> float:
+    """
+    The B_12 coefficient for the quadruple-dipole dispersion interaction between
+    four parahydrogen molecules.
+
+    Units: [cm^{-1}] [Angstrom]^{-12}
+
+    We follow a similar approach to what was done in 'b12_parahydrogen_avdz_approx()'.
+    However, we use the CCSD(T) energies calculated using the AVTZ basis instead of
+    the AVDZ basis, and we base our estimate on the value of the interaction energy
+    at the tetrahedron side length of 4.15 Angstroms (the turning point in the curve).
+
+    The estimate is given as a ratio of the Midzuno-Kihara estimate.
+    """
+    mk_to_avtz_ratio = 0.1202
+
+    return mk_to_avtz_ratio * b12_parahydrogen_midzuno_kihara()
