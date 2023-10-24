@@ -37,15 +37,25 @@ def unit_collinear_energy_by_hand() -> float:
         3 * (1.0 / 1.0) ** 12 + 2 * (1.0 / 2.0) ** 12 + 1 * (1.0 / 3.0) ** 12
     )
 
-    # there are 4 triplet terms
+    # there are 12 triplet terms
     #
     # the dot product between the unit vectors is always -1 or 1, but it gets squared,
     # so it doesn't matter
     # thus the numerator is always 2
     #
+    # the denominator is:
+    # 1^6 : for {(1, 0, 2), (2, 1, 3)}
+    # 2^6 : for {(0, 1, 2), (1, 0, 3), (1, 2, 3), (2, 0, 1), (2, 0, 3), (3, 1, 2)}
+    # 3^6 : for {(0, 1, 3), (3, 0, 2)}
+    # 6^6 : for {(0, 2, 3), (3, 0, 1)}
     # for (0-1-2) and (1-2-3) -> denominator is 1
     # for (0-1-3) and (0-2-3) -> denominator is 2^6
-    total_triplet_contrib = 2 * (2.0 / (1.0**6)) + 2 * (2.0 / (2.0**6))
+    total_triplet_contrib = (
+        2 * (2.0 / (1.0**6))
+        + 6 * (2.0 / (2.0**6))
+        + 2 * (2.0 / (3.0**6))
+        + 2 * (2.0 / (6.0**6))
+    )
 
     # there are 3 quadruplet terms
     #

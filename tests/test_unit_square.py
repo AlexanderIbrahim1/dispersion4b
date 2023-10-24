@@ -29,19 +29,24 @@ def unit_square_energy_by_hand() -> float:
     #    R_02 = R_13 = sqrt(2)
     total_pair_contrib = 4 * (1.0 / 1.0) ** 12 + 2 * (1.0 / math.sqrt(2.0)) ** 12
 
-    # there are 4 triplet terms
+    # there are 12 triplet terms
     #
-    # for (0-1-2) and (1-2-3)
-    # - the unit vectors are orthogonal
-    # - the pair distances are 1
-    # for (0-1-3) and (0-2-3)
-    # - the angle between the unit vectors is cos(135deg)
-    # - one pair distance is 1, the other is sqrt(2)
+    # the following 8 terms have one side length and one diagonal for the square:
+    #     {(0, 1, 2), (0, 2, 3), (1, 0, 3), (1, 2, 3), (2, 0, 1), (2, 0, 3), (3, 0, 1), (3, 1, 2)}
+    # - for these terms:
+    #  - the angle between the unit vectors is either cos(135deg) or cos(45deg), both 1/sqrt(2)
+    #  - one pair distance is 1, the other is sqrt(2)
+    #
+    # the following 4 terms have two side lengths on the square
+    #     {(0, 1, 3), (1, 0, 2), (2, 1, 3), (3, 0, 2)}
+    # - for these terms:
+    #  - the unit vectors are orthogonal
+    #  - both pair distances are 1
     cos135 = math.cos(math.pi * (3.0 / 4.0))
-    contrib_012 = (1.0 + (0.0) ** 2) / (1.0**12)
-    contrib_013 = (1.0 + (cos135) ** 2) / ((1.0**6) * (math.sqrt(2.0) ** 6))
+    contrib4 = (1.0 + (0.0) ** 2) / (1.0**12)
+    contrib8 = (1.0 + (cos135) ** 2) / ((1.0**6) * (math.sqrt(2.0) ** 6))
 
-    total_triplet_contrib = 2 * contrib_012 + 2 * contrib_013
+    total_triplet_contrib = 4 * contrib4 + 8 * contrib8
 
     # there are 3 quadruplet terms
     #
