@@ -10,7 +10,7 @@ testpaths = [
 
 [project]
 name = "dispersion4b"
-version = "0.1.0"
+version = "0.1.1"
 
 [tool.mypy]
 mypy_path = "src"
