@@ -147,7 +147,7 @@ def b12_parahydrogen_avdz_approx() -> float:
 
     The estimate is given as a ratio of the Midzuno-Kihara estimate.
     """
-    mk_to_avdz_ratio = 0.1281
+    mk_to_avdz_ratio = 0.9380
 
     return mk_to_avdz_ratio * b12_parahydrogen_midzuno_kihara()
 
@@ -166,7 +166,7 @@ def b12_parahydrogen_avtz_approx() -> float:
 
     The estimate is given as a ratio of the Midzuno-Kihara estimate.
     """
-    mk_to_avtz_ratio = 0.1202
+    mk_to_avtz_ratio = 0.8736
 
     return mk_to_avtz_ratio * b12_parahydrogen_midzuno_kihara()
 
